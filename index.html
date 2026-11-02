@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Giovani Almeida Oliveira">
+
+  <title>ApVision</title>
+  <link rel="stylesheet" href="estaticos/estilo.css">
+  <link rel="stylesheet" href="estaticos/slides.css">
+  <script src="estaticos/chart.js" defer></script>
+  <script src="estaticos/pptxgen.bundle.js" defer></script>
+  <link rel="icon" href="ApVisionImage.png" type="image/png">
+</head>
+<body>
+  <header class="cabecalho">
+    <div class="logo-area">
+      <img class="logo-foto" src="ApVisionImage.png" alt="Logo ApVision">
+      <div class="logo-nome">ApVision</div>
+      <span class="logo-selo">Painel de KPIs</span>
+    </div>
+    <div class="botoes-topo">
+      <button class="btn-projeto" id="btn-novo-projeto" title="Começar do zero com o modelo padrão">Novo Projeto</button>
+      <button class="btn-projeto" id="btn-abrir-projeto" title="Abrir arquivo salvo (.json)">Abrir Projeto</button>
+      <button class="btn-projeto" id="btn-salvar-projeto" title="Baixar projeto (.json)">Salvar Projeto</button>
+      <input type="file" id="entrada-arquivo-projeto" accept=".json" style="display:none">
+      <button class="btn-exportar" id="btn-exportar-pptx">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Gerar PowerPoint (.pptx)
+      </button>
+    </div>
+  </header>
+
+  <div class="area-app">
+    <aside class="painel-lateral">
+      <nav class="abas-topo" aria-label="Seções do editor">
+        <button class="btn-aba ativo" data-aba="aba-estrutura">1. Estrutura</button>
+        <button class="btn-aba" data-aba="aba-editor" id="btn-aba-editor">2. Editar Slide</button>
+        <button class="btn-aba" data-aba="aba-paleta">3. Paleta</button>
+      </nav>
+
+      <div class="abas-conteudo">
+        <section class="aba-painel ativo" id="aba-estrutura">
+          <div class="titulo-secao">Ordem dos Slides</div>
+          <div class="lista-itens" id="lista-slides-ordem"></div>
+
+          <div class="titulo-secao" style="margin-top: 24px;">Adicionar Novo Slide</div>
+          <div class="campo">
+            <label for="selecionar-tipo-slide">Tipo de Slide</label>
+            <select id="selecionar-tipo-slide">
+              <option value="capa">Capa Inicial</option>
+              <option value="totalizador">Totalizador Anual</option>
+              <option value="mensal">Indicadores do Mês</option>
+              <option value="slide4">Gráfico de Barras (Lateral)</option>
+              <option value="slide5">Gráfico de Linhas (Realizado x Meta)</option>
+              <option value="slide6">Gráfico de Pizza / Rosca</option>
+              <option value="slide7">Evolução de Indicadores</option>
+              <option value="slide8">Caixa de Texto Livre</option>
+              <option value="encerramento">Capa Final</option>
+            </select>
+          </div>
+          <button class="btn-secundario" id="btn-adicionar-slide" style="border-color: var(--cor-verde); color: var(--cor-verde);">+ Adicionar Slide</button>
+        </section>
+
+        <section class="aba-painel" id="aba-editor">
+          <div class="titulo-secao">Editor do Slide Selecionado</div>
+          <div id="area-campos-editor">
+            <div class="mensagem-vazia-painel">
+              Selecione um slide para editar as informações dele aqui.
+            </div>
+          </div>
+        </section>
+
+        <section class="aba-painel" id="aba-paleta">
+          <div class="titulo-secao">Paleta de Cores dos Slides</div>
+          <div id="area-paleta"></div>
+        </section>
+      </div>
+    </aside>
+
+    <main class="area-principal">
+      <div class="indicador-slide">
+        Visualização de Slide: <span id="contador-slide-atual">1 / 1</span>
+        <strong id="nome-slide-atual">Carregando...</strong>
+      </div>
+
+      <div class="area-palco">
+        <button class="btn-nav nav-anterior" id="btn-slide-anterior" aria-label="Slide anterior">&lt;</button>
+        <div class="quadro-slide" id="palco-previa-slide"></div>
+        <button class="btn-nav nav-proximo" id="btn-proximo-slide" aria-label="Próximo slide">&gt;</button>
+      </div>
+
+      <div class="barra-miniaturas" id="area-miniaturas"></div>
+    </main>
+  </div>
+
+  <script src="js/dados.js" defer></script>
+  <script src="js/previa.js" defer></script>
+  <script src="js/editor.js" defer></script>
+  <script src="js/miniaturas.js" defer></script>
+  <script src="js/exportar.js" defer></script>
+  <script src="js/paleta.js" defer></script>
+  <script src="js/principal.js" defer></script>
+</body>
+</html>
